@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import TabButton from './TabButton.jsx';
 import { EXAMPLES } from '../data.js';
+import Section from './Section.jsx';
+import Tabs from './Tabs.jsx';
 
 export default function Examples() {
   const [selectedTopic, setSelectedTopic] = useState();
@@ -28,35 +30,39 @@ export default function Examples() {
   }
 
   return (
-    <section id="examples">
-      <h2>Examples</h2>
-      <menu>
-        <TabButton
-          isSelected={selectedTopic === 'components'}
-          onSelect={() => handleSelect('components')}
-        >
-          Components
-        </TabButton>
-        <TabButton
-          isSelected={selectedTopic === 'jsx'}
-          onSelect={() => handleSelect('jsx')}
-        >
-          JSX
-        </TabButton>
-        <TabButton
-          isSelected={selectedTopic === 'props'}
-          onSelect={() => handleSelect('props')}
-        >
-          Props
-        </TabButton>
-        <TabButton
-          isSelected={selectedTopic === 'state'}
-          onSelect={() => handleSelect('state')}
-        >
-          State
-        </TabButton>
-      </menu>
+    <Section title={Examples} id="examples">
+      <Tabs
+        // It’s a type of property that allows us to use other elements, such as div or section. We want to use the Tabs component in various parts of the project, and we don’t want to restrict it to a specific tag like menu.
+        buttons={
+          <>
+            <TabButton
+              isSelected={selectedTopic === 'components'}
+              onClick={() => handleSelect('components')}
+            >
+              Components
+            </TabButton>
+            <TabButton
+              isSelected={selectedTopic === 'jsx'}
+              onClick={() => handleSelect('jsx')}
+            >
+              JSX
+            </TabButton>
+            <TabButton
+              isSelected={selectedTopic === 'props'}
+              onClick={() => handleSelect('props')}
+            >
+              Props
+            </TabButton>
+            <TabButton
+              isSelected={selectedTopic === 'state'}
+              onClick={() => handleSelect('state')}
+            >
+              State
+            </TabButton>
+          </>
+        }
+      ></Tabs>
       <p>{tabContent}</p>
-    </section>
+    </Section>
   );
 }
